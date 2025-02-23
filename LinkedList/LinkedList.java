@@ -43,4 +43,32 @@ public class LinkedList {
         // Move tail to the newly created node
         tail = newNode;
     }
+
+    // Deleting a node from end of the list
+    public Node pop() {
+        // Returns null if the List is empty
+        if (head == null)
+            return null;
+
+        Node temp = head;
+        Node pre = head;
+        // If there is only one element in the list then iteration won't work
+        if (head.next == null) {
+            head = null;
+            tail = null;
+            return temp;
+        }
+        // After this looping temp will be pointing to the last element while pre will
+        // be pointing to the second last element
+        while (temp.next != null) {
+            pre = temp;
+            temp = temp.next;
+        }
+        // Setting the next of second last element as null
+        pre.next = null;
+        // Moving tail from the last element to second last element
+        tail = pre;
+        // Returns the last node
+        return temp;
+    }
 }
