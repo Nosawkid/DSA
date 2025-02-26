@@ -26,12 +26,19 @@ public class LinkedList {
         tail = newNode;
     }
 
+    private boolean isEmpty() {
+        if (head == null) {
+            return true;
+        }
+        return false;
+    }
+
     // Appending a node at the end of the List
     public void appendNode(int data) {
         // Create a new Node
         Node newNode = new Node(data);
         // Check if the List is empty
-        if (head == null) {
+        if (isEmpty()) {
             // If list is empty both head and tail should point to the newly created node
             head = newNode;
             tail = newNode;
@@ -47,7 +54,7 @@ public class LinkedList {
     // Deleting a node from end of the list
     public Node pop() {
         // Returns null if the List is empty
-        if (head == null)
+        if (isEmpty())
             return null;
 
         Node temp = head;
@@ -70,5 +77,31 @@ public class LinkedList {
         tail = pre;
         // Returns the last node
         return temp;
+    }
+
+    public void prependNode(int data) {
+        Node newNode = new Node(data);
+        if (isEmpty()) {
+            head = newNode;
+            tail = newNode;
+            return;
+        }
+        newNode.next = head;
+        head = newNode;
+
+    }
+
+    public void displayList() {
+        if (isEmpty()) {
+            System.out.println("Empty List");
+            return;
+        }
+        // Pointer variable to iterate the list
+        Node temp = head;
+        while (temp != null) {
+            System.out.print(temp.data + " => ");
+            temp = temp.next;
+        }
+        System.out.println("");
     }
 }
